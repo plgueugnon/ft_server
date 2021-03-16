@@ -12,3 +12,5 @@ COPY default /etc/nginx/sites-available/
 #RUN service nginx start
 #RUN sleep infinity
 #RUN -d -p 80:80 --name=ft_server ft_server
+
+CMD service nginx start && tail -f /var/log/nginx/*.log

@@ -5,12 +5,17 @@ server {
 	listen 80;
 	listen [::]:80;
 
+	server_name localhost;
+	return 301 https://$host$request_uri;
+}
+
+server {
 	# SSL configuration
-	listen 443;
-	listen [::]:443;
-	ssl on;
+	listen 443 ssl ;
+	listen [::]:443 ssl ;
+
 	ssl_certificate /etc/ssl/certs/cert.pem;
-	ssl_certificate_key /etc/ssl/private/key.key;
+	ssl_certificate_key /etc/ssl/private/key.pem;
 
 	root /var/www/projet/html;
 
@@ -24,22 +29,5 @@ server {
 		# as directory, then fall back to displaying a 404.
 		try_files $uri $uri/ =404;
 	}
-
-	# pass PHP scripts to FastCGI server
-	#
-	#location ~ \.php$ {
-	#	include snippets/fastcgi-php.conf;
-	#
-	#	# With php-fpm (or other unix sockets):
-	#	fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
-	#	# With php-cgi (or other tcp sockets):
-	#	fastcgi_pass 127.0.0.1:9000;
-	#}
-
-	# deny access to .htaccess files, if Apache's document root
-	# concurs with nginx's one
-	#
-	#location ~ /\.ht {
-	#	deny all;
-	#}
 }
+
