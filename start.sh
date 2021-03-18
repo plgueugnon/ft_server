@@ -4,7 +4,7 @@
 sudo systemctl stop nginx
 #&& sudo mkdir -p /var/www/projet/html
 
-sudo chmod 666 /var/run/docker.sock
+#sudo chmod 666 /var/run/docker.sock
 #&& sudo chmod 755 /var/www/projet
 
 
