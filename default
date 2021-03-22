@@ -17,7 +17,7 @@ server {
 	ssl_certificate /etc/ssl/certs/cert.pem;
 	ssl_certificate_key /etc/ssl/private/key.pem;
 
-	root /var/www/projet/html;
+	root /var/www/projet/;
 
 	# Add index.php to the list if you are using PHP
 	index index.php projet.html #index.nginx-debian.html;
