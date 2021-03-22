@@ -16,7 +16,9 @@ sudo systemctl stop nginx
 sudo docker kill $(docker ps -qa)
 #sudo docker rmi $(docker images -qa)
 #docker images purge
-sudo docker build -t ft_server .
+echo "Starting to build\n"
+sudo docker build -t ft_server . >> log.txt
+echo "Build finished\n"
 #sudo cp projet.html /var/www/projet/html/projet.html\
 #&& sudo cp nginx.conf /etc/nginx/\
 #&& sudo cp server_config /etc/nginx/sites-available/\
