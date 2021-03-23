@@ -1,9 +1,9 @@
 #!/bin/bash/
 
 # OPTION 1
-echo "Please kill nginx service before starting"
+echo "killing nginx service before starting"
 sudo systemctl stop nginx
-echo "thank you!"
+echo "Done - thank you!"
 #&& sudo mkdir -p /var/www/projet/html
 
 #sudo chmod 666 /var/run/docker.sock
@@ -19,10 +19,10 @@ echo "killing previous running containers"
 sudo docker kill $(docker ps -qa)
 #sudo docker rmi $(docker images -qa)
 #docker images purge
-echo "Starting to build\n"
+echo "Starting to build"
 touch log.txt
 sudo docker build -t ft_server . >> log.txt
-echo "Build finished\n"
+echo "Build finished"
 #sudo cp projet.html /var/www/projet/html/projet.html\
 #&& sudo cp nginx.conf /etc/nginx/\
 #&& sudo cp server_config /etc/nginx/sites-available/\
