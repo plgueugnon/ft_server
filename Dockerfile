@@ -11,7 +11,7 @@ RUN apt-get install -y wget
 # Creating root dir to receive server, wp and php config files
 RUN mkdir -p /var/www/projet/wordpress && mkdir /var/www/projet/test\
 && touch /var/www/projet/test/hahayoufoundmeee.txt
-COPY projet.html /var/www/projet/
+COPY ./srcs/projet.html /var/www/projet/
 RUN chmod -R 755 /var/www/projet
 
 # Getting php, wp-cli and wp files
@@ -25,11 +25,11 @@ RUN wp core download --path=/var/www/projet/wordpress/ --allow-root
 # Creating ssl key
 RUN openssl req -newkey rsa:4096 -sha256 -x509 -days 365 -nodes -out /etc/ssl/certs/cert.pem -keyout /etc/ssl/private/key.pem -subj "/C=FR/ST=Paris/L=Paris/O=42/OU=pgueugno/CN=localhost"
 
-# Creating env var autoindex & copying last config script and files 
-#RUN export AUTOINDEX=on
-COPY default /etc/nginx/sites-available/
-COPY autoindex.sh /tmp/
-COPY config_mysql.sh /tmp/
+# Creating env var autoindex & copying last config script and files into docker image 
+ENV AUTOINDEX=on
+COPY ./srcs/default /etc/nginx/sites-available/
+COPY ./srcs/autoindex.sh /tmp/
+COPY ./srcs/config_mysql.sh /tmp/
 # Cmd not required as we replace default - otherwise necessary
 #RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
 

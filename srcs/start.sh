@@ -1,9 +1,9 @@
 #!/bin/bash/
 
 # Dealing with nginx service as a precaution
-echo "\033[33mKilling nginx service before starting - please enter admin code to proceed"
+echo "\033[33mKilling nginx service before starting - please enter admin code to proceed\033[0m"
 sudo systemctl stop nginx
-echo "\033[33mDone - thank you!"
+echo "\033[33mDone - thank you!\033[0m"
 
 # Debug (safer but less efficient)
 #sudo groupadd docker 
@@ -21,13 +21,13 @@ echo "\033[33mDone - thank you!"
 #docker images purge
 
 # Build docker image ft_server
-echo "\033[32mStarting to build - please wait while docker image is being built"
+echo "\033[32mStarting to build - please wait while docker image is being built\033[0m"
 touch log.txt
-sudo docker build -t ft_server . >> log.txt
-echo "\033[32mBuild finished"
+docker build -t ft_server . >> log.txt
+echo "\033[32mBuild finished\033[0m"
 
 # Launching container without specific name from image ft_server
-echo "\033[32mLaunching container"
+echo "\033[32mLaunching container\033[0m"
 docker run -d -p 80:80 -p 443:443 ft_server
-echo "\033[32mContainer launched - ready when you are :)"
+echo "\033[32mContainer launched - ready when you are :)\033[0m"
 docker exec -it $(docker ps -q) bash
